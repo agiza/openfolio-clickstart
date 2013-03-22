@@ -1,0 +1,48 @@
+{
+    "id": "openfolio",
+    "name": "Drupal ClickStart with Openfolio",
+    "source": "github",
+    "description": "An Openfolio example Drupal-based web site",
+    "doc-url": "https://github.com/cloudbees-community/openfolio-clickstart/blob/master/README.md",
+    "supported-by" : "community", 
+    "order" : 5,
+
+    "disabled" : true,
+    "databases": [
+        {
+            "type": "mysql",
+            "alias": "drupal"
+        }
+    ],
+    "runtime": {
+        "type": "drupal",
+        "app-variables": {
+            "hashSalt": "$RANDOM_VALUE",
+            "maxPost": 10
+        },
+        "app-parameters" : { 
+            "runtime.email": "admin@example.com",
+            "runtime.name": "Openfolio ClickStart",
+            "runtime.user": "admin",
+            "runtime.pass": "password",
+            "runtime.profile": "openfolio"
+        }
+    },
+    "services" : [
+         {
+          "name" : "newrelic",
+          "plan" : "standard",
+          "settings" : {}
+         },
+         {
+          "name" : "sendgrid",
+          "plan" : "free",
+          "settings" : {}
+         }     
+    ],
+    "build-with-jenkins": {
+        "template": {
+            "type": "https://raw.github.com/cloudbees-community/openfolio-clickstart/master/config.xml"
+        }
+    }
+}
